@@ -8,7 +8,7 @@ class Task(models.Model):
   Descripción = models.TextField(max_length=1000)
   created = models.DateTimeField(auto_now_add=True)
   datecompleted = models.DateTimeField(null=True, blank=True)
-  importante = models.BooleanField(default=False)
+  Importante = models.BooleanField(default=False)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
