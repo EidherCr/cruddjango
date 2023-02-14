@@ -11,15 +11,15 @@
                 {% for task in tasks %}
                 <a class="list-group-item" href="{% url 'task_detail' task.id %}">
                         <heaer class="d-flex justify-content-between">
-                            {% if task.Importante %}
-                            <h1 class="fw-bold text-success">{{task.Titulo}}</h1>
+                            {% if task.important %}
+                            <h1 class="fw-bold text-success">{{task.title}}</h1>
                             {% else %}
-                            <h1 class="fw-bold">{{task.Titulo}}</h1>
+                            <h1 class="fw-bold">{{task.title}}</h1>
                             {% endif %}
                             <p>{{task.user.username}}</p>
                         </heaer>
                         
-                        <p>{{task.Descripcion}}</p>
+                        <p>{{task.description}}</p>
 
                         {{task.datecompleted|date:'M j Y h:i'}} 
                 </a>
