@@ -9,7 +9,7 @@ from .models import Task
 from django.conf import settings
 from django.core.mail import send_mail
 import threading
-
+from templates import signup.html
 
 
 
