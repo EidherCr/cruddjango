@@ -46,17 +46,6 @@ def signup(request):
     
 
 
-def send_welcome_mail(user):
-    mail = create_mail(
-        user.email,
-        'Bienvenido a la plataforma 🥳',
-        'welcome_mail.html',
-        {
-            'username': user.username
-        }
-    )
-
-    email.send(fail_silently=False)
 
 def sign_up(request):
     user = request.user
