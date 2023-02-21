@@ -6,11 +6,22 @@ from django.db import IntegrityError
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import Task
+from django.conf import settings
+from django.core.mail import send_mail
+
+
 
 from .forms import TaskForm
 
 # Create your views here.
 
+send_mail(
+    'Título del correo',
+    'Hola, este correo es enviado desde un post en PyWombat. 🐍',
+    settings.EMAIL_HOST_USER,
+    ['to@example.com'],
+    fail_silently=False
+)
 
 def signup(request):
     if request.method == 'GET':
@@ -28,6 +39,23 @@ def signup(request):
                 return render(request, 'signup.html', {"form": UserCreationForm, "error": "Username already exists."})
 
         return render(request, 'signup.html', {"form": UserCreationForm, "error": "Passwords did not match."})
+    
+ def create_mail(user_mail, subject, template_name, context):
+    template = get_template(template_name)
+    content = template.render(context)
+
+    message = EmailMultiAlternatives(
+        subject=subject,
+        body='',
+        from_email=settings.EMAIL_HOST_USER,
+        to=[
+            user_mail
+        ],
+        cc=[]
+    )
+
+    message.attach_alternative(content, 'text/html')
+    return message
 
 
 @login_required
