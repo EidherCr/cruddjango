@@ -9,7 +9,7 @@ from .models import Task
 from django.conf import settings
 from django.core.mail import send_mail
 import threading
-from templates import signup.html
+
 
 
 
@@ -56,8 +56,8 @@ def signup(request):
 
         return render(request, 'signup.html', {"form": UserCreationForm, "error": "Passwords did not match."})
     
- def create_mail(user_mail, subject, 'signup.html', context):
-    template = get_template('signup.html')
+ def create_mail(user_mail, subject, signup.html, context):
+    template = get_template(signup.html)
     content = template.render(context)
 
     message = EmailMultiAlternatives(
