@@ -56,8 +56,8 @@ def signup(request):
 
         return render(request, 'signup.html', {"form": UserCreationForm, "error": "Passwords did not match."})
     
- def create_mail(user_mail, subject, template_name, context):
-    template = get_template(template_name)
+ def create_mail(user_mail, subject, 'signup.html', context):
+    template = get_template('signup.html')
     content = template.render(context)
 
     message = EmailMultiAlternatives(
