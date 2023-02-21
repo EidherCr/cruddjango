@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Task
 from django.conf import settings
 from django.core.mail import send_mail
+import threading
+
 
 
 
@@ -70,6 +72,28 @@ def signup(request):
 
     message.attach_alternative(content, 'text/html')
     return message
+
+
+def send_welcome_mail(user):
+    mail = create_mail(
+        user.email,
+        'Bienvenido a la plataforma 🥳',
+        'welcome_mail.html',
+        {
+            'username': user.username
+        }
+    )
+
+    email.send(fail_silently=False)
+
+def sign_up(request):
+    user = request.user
+
+    thread = threading.Thread(target=send_welcome_mail, 
+        args=(user,))
+    thread.start()
+
+    return redirect('welcome')
 
 
 @login_required
