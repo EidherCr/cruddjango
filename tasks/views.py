@@ -17,13 +17,7 @@ from .forms import TaskForm
 
 # Create your views here.
 
-send_mail(
-    'Título del correo',
-    'Hola, este correo es enviado desde un post en PyWombat. 🐍',
-    settings.EMAIL_HOST_USER,
-    ['to@example.com'],
-    fail_silently=False
-)
+
 
 
 
