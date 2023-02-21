@@ -23,6 +23,20 @@ send_mail(
     fail_silently=False
 )
 
+def sign_up(request):
+    mail = create_mail(
+        'eduardo78d@gmail.com',
+        'Bienvenido a la plataforma 🥳',
+        'welcome_mail.html',
+        {
+            'username': 'eduardo_gpg'
+        }
+    )
+
+    email.send(fail_silently=False)
+
+    return redirect('welcome')
+
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html', {"form": UserCreationForm})
